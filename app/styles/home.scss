@@ -1,0 +1,29 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	// background: url(../images/bg/vintage-wallpaper.jpg);
+	background: url(../images/save-the-date.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.overlay {
+	background: url(../images/black-overlay.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: opacity 2s ease-in-out;
+	opacity: 0;
+
+	&.show-overlay {
+		opacity: 1;
+	}
+}

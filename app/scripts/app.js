@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'firebase'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -30,4 +31,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .value('config', {
+    fireBaseUrl: 'https://crackling-fire-3057.firebaseio.com/dana-si-gion-ro'
   });
