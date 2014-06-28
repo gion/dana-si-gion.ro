@@ -11,7 +11,8 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/loading.css">
+    <link rel="stylesheet" href="styles/startpage.css">
     <!-- endbuild -->
   </head>
   <body ng-app="danaSiGionroApp">
@@ -19,25 +20,47 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-    
-<!--       <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">danaSiGionro</h3>
-      </div> -->
-
-      <div ng-view=""></div>
-<!-- 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div> -->
+    <div id="loading">
+      <div id="indicator">
+        <div class="flower"></div>  
+        <div class="hearts"></div>
+        <p class="error"></p>
+      </div>
+      <div id="mobilepage">
+        <span class="background"></span>
+        <div class="text">
+          <p>Bitte schau' dir diese Seite auf einem Desktop-Computer an!</p>
+          <p>Please view this page using a desktop computer!</p>        
+        </div>
+      </div>
     </div>
 
+    <!-- Add your site or application content here -->
+    <div class="view" ng-view="">
+
+    <footer>
+      <ul id="footernav">
+        <li id="info"><a href="#">Info</a></li>
+        <li id="language"><a href="#" lang="en">Deutsch</a><a href="#" lang="de">English</a></li>
+        <li id="music">
+          <a href="#" lang="de" data-loading="Lade..." data-off="Musik aus" data-on="Musik ein"></a>
+          <a href="#" lang="en" data-loading="Loading..." data-off="Music off" data-on="Music on"></a>
+          <span id="player"></span>
+        </li>
+      </ul>
+      <div id="info-content"><div class="inner">
+        <div class="heart"></div>
+        <h3>Info about this site</h3>
+        <ul>
+          <li>design and idea by the bridal pair, inspired by <a href="http://www.artemjuliawedding.com/en">Artem and Julia's wedding site</a></li>
+          <li>text by the bride, programming by <a href="http://mbaierl.com/">the groom</a></li>
+          <li>made using HTML5, CSS3, <a href="http://jquery.com/">jQuery</a>, <a href="http://janpaepke.github.io/ScrollMagic/">ScrollMagic</a>, <a href="http://compass-style.org/">Compass</a> and <span class="highlight">a lot of love</span></li>
+          <li>music by <a href="https://www.youtube.com/watch?v=NNC0kIzM1Fo">John Paul Young</a></li>
+          <li>special thanks to <a href="http://www.langsamfood.com/">langSam</a> for the poetic translation into English!</li>
+          <li>contact me at <span class="mailto" style="unicode-bidi: bidi-override; direction: rtl;">moc.lreiabm@ekim</span> </li>
+        </ul>
+      </div></div>
+    </footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -81,12 +104,12 @@
     <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
     <script src="bower_components/angularfire/angularfire.js"></script>
     <!-- endbower -->
+    <script src="scripts/vendor/vendor.js"></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>
