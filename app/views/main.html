@@ -1,3 +1,69 @@
-<div class="overlay" ng-class="{'show-overlay': showOverlay}" ng-mousemove="mouseMove()">
-  {{registeredUsers}}
+<div class="overlay" ng-class="{'show-overlay': showOverlay, 'thanks': !!thanks}" ng-mousemove="mouseMove()">
+  <div class="popup">
+  	<h1 class="message">
+  		SAVE THE DATE!
+  	</h1>
+  	<h1 class="date">
+  		16.08.2014
+  	</h1>
+  	<div id="thanks">
+  		See you there, {{form.name}}  :-)
+  	</div>
+  	<div class="form-wrapper">	
+		<form 
+			name="confirm" 
+			id="confirm-form"
+			class="field-{{currentFieldIndex}}" 
+			ng-init="currentFieldIndex = 1"
+			ng-submit="submit()"
+			novalidate>
+			<fieldset class="fieldset-1" ng-class="{'active': currentFieldIndex == 1, 'invalid': confirm.name.$invalid}">
+				<legend>Name</legend>
+				<input type="name" name="name" id="name" placeholder="name" ng-model="form.name" ng-keydown="keypress($event)" required>
+				<span class="next-field cursor-pointer glyphicon glyphicon-chevron-right" ng-click="goTo($event, currentFieldIndex + 1)"></span>
+			</fieldset>
+			<fieldset class="fieldset-2" ng-class="{'active': currentFieldIndex == 2, 'invalid': confirm.email.$invalid}">
+				<legend cursor-pointer>Email</legend>
+				<span class="prev-field cursor-pointer glyphicon glyphicon-chevron-left" ng-click="goTo($event, currentFieldIndex - 1)"></span>
+				<input type="email" name="email" id="email" placeholder="email" ng-model="form.email" ng-keydown="keypress($event)" required>
+				<span class="next-field cursor-pointer glyphicon glyphicon-chevron-right" ng-click="goTo($event, currentFieldIndex + 1)"></span>
+			</fieldset>
+
+			<fieldset class="fieldset-3" ng-class="{'active': currentFieldIndex == 3}">
+				<legend cursor-pointer>+1 ?</legend>
+				<span class="prev-field cursor-pointer glyphicon glyphicon-chevron-left" ng-click="goTo($event, currentFieldIndex - 1)"></span>
+				<input type="checkbox" name="couple" id="couple" ng-model="form.couple" ng-keydown="keypress($event)">
+				<label for="couple" class="cursor-pointer" ng-class="{'smile': !!form.couple}">
+					Coming 
+					<span class="animated-text">
+						<span ng-class="{'to-hide': !form.couple}">
+							with someone
+						</span>
+						<span ng-class="{'to-hide': !!form.couple}">
+							alone
+						</span> 
+					</span> 
+					<span class="emoticon">
+						:-
+						<span class="emoticon-mouth">
+							(
+						</span>
+					</span>
+				</label>
+				<span class="next-field cursor-pointer glyphicon glyphicon-chevron-right" ng-click="goTo($event, currentFieldIndex + 1)"></span>
+			</fieldset>
+			<fieldset class="fieldset-4" ng-class="{'active': currentFieldIndex == 4}">
+				<legend>See you there!</legend>
+				<span class="prev-field cursor-pointer glyphicon glyphicon-chevron-left" ng-click="goTo($event, currentFieldIndex - 1)"></span>
+				<span class="line-height-30">
+					<button type="button" class="btn btn-success btn-sm" ng-click="submit()" ng-disabled="confirm.$invalid" ng-keydown="keypress($event)">
+						<span class="glyphicon glyphicon-ok-sign">
+							SEND
+						</span>
+					</button>
+				</span>
+			</fieldset>
+		</form>
+  	</div>
+  </div>
 </div>

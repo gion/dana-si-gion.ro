@@ -1,3 +1,6 @@
+$easing: linear;
+$white: #fff;
+
 html, body {
 	height: 100%;
 }
@@ -10,6 +13,16 @@ body {
 	background-position: center center;
 }
 
+h1, h2 {
+	font-family: stalemate;
+	font-size: 8rem;
+	color: #fff;
+}
+
+h2 {
+	font-size: 5rem;
+}
+
 .overlay {
 	background: url(../images/black-overlay.png);
 	background-size: cover;
@@ -20,10 +33,213 @@ body {
 	position: absolute;
 	left: 0;
 	top: 0;
-	transition: opacity 2s ease-in-out;
+	transition: opacity 2s $easing;
 	opacity: 0;
 
 	&.show-overlay {
 		opacity: 1;
 	}
+
+	&.thanks {
+		form {
+			opacity: 0;
+			transform: scale(0);
+		}
+
+		#thanks {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+#thanks {
+	opacity: 0;
+	transform: scale(0);
+	transition: all 500ms $easing;
+	color: $white;	
+	font-family: stalemate;
+	font-size: 4rem;
+}
+
+.popup {
+	$width: 360px;
+	$fieldCount: 4;
+	$inputWidthPercentage: 0.8;
+	$spanWidth: $width * (1 - $inputWidthPercentage) / 2 - 5;
+
+	.form-wrapper {
+		overflow: hidden;
+		width: $width;
+	}
+
+	// border: 1px solid red;
+	top: 200px;
+	left: 100px;
+	position: absolute;
+
+	#confirm-form {
+		width: $fieldCount * $width;
+		transition: all 500ms $easing;
+
+		@for $i from 1 through 4 {
+		  &.field-#{$i} {	
+			margin-left: - ($i - 1) * $width;
+		  }
+		}
+
+		&.field-2 {
+			margin-left: -1 * $width + 5;
+		}
+	}
+
+	fieldset {
+		width: $width;
+		float: left;
+		// opacity: 0;
+		transition: all 300ms $easing;
+
+		&.active {
+			opacity: 1;
+		}
+
+		&.invalid {
+			.next-field {
+				@extend .really-hidden;
+			}
+		}
+		
+		&.fieldset-4 {
+			.prev-field {
+				top: 7px;
+			}
+		}
+
+		&:first-child {
+			input {
+				margin-left: $spanWidth;
+			}
+		}
+
+
+		legend {
+			text-indent: $spanWidth;
+			color: $white;
+
+		}
+
+		input {
+			border-radius: 4px;
+			margin: 0;
+			padding: 0;
+			text-indent: 5px;
+			border: 0;
+			font-size: 20px;
+			line-height: 30px;
+			height: 30px;
+
+			&[type="checkbox"] {
+				width: 16px;
+				height: 16px;
+			}
+		}
+
+		label {
+			font-size: 20px;
+			line-height: 30px;
+			height: 30px;
+			width: 260px;
+			color: $white;
+
+			position: relative;
+			top: 11px;	
+			margin-top: -11px;
+			transition: all 300ms $easing;
+			overflow-y: hidden;
+			
+
+			.animated-text {
+				position: relative;
+				top: -33px;
+				transition: all 300ms $easing;
+				span {
+					display: inline;
+					&:last-child {
+						position: absolute;
+						top: 33px;
+						left: 0;
+					}
+				}
+			}
+
+			.emoticon-mouth {
+				transition: all 300ms $easing;
+			}
+
+			&.smile {
+				color: green;
+
+				.animated-text {
+					top: 0px;
+				}
+				.emoticon-mouth {
+					transform: rotate(180deg) translateY(-2px);
+				}
+			}
+		}
+
+		span {
+			display: inline-block;
+		}
+
+		.next-field, .prev-field {
+			$hoverSpanDistance: 5px;
+
+			width: $spanWidth;
+			position: relative;
+			top: 2px;
+			font-size: 20px;
+			transition: all 100ms ease-in;
+			&:hover {
+				transition-timing-function: ease-out;
+			}
+
+			&.prev-field {
+				padding-left: $hoverSpanDistance;
+				transform: translateX($hoverSpanDistance);
+				&:hover {
+					transform: translateX(0);
+				}
+			}
+
+			&.next-field {
+				padding-right: $hoverSpanDistance;
+				&:hover {
+					transform: translateX($hoverSpanDistance);
+				}
+			}
+		}
+		input{
+			width: $width * $inputWidthPercentage;
+		}
+
+		button {
+			margin-left: 100px;
+		}
+
+	}
+
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.line-height-30 {
+	line-height: 30px;
+}
+
+.really-hidden {
+	opacity: 0;
+	pointer-events: none;
 }
