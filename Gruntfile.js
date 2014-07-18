@@ -342,7 +342,11 @@ module.exports = function (grunt) {
         base: 'dist',
         message: 'auto-generated commit --skip-ci',
         // silent: true,
-        repo: 'https://' + process.env.GH_TOKEN + '@github.com/gion/dana-si-gion.ro.git'
+        repo: 'https://' + process.env.GH_TOKEN + '@github.com/gion/dana-si-gion.ro.git',
+        user: {
+          name: 'gion',
+          email: 'bogdan.gradinariu@gmail.com'
+        }
       },
       src: ['**']
     }
