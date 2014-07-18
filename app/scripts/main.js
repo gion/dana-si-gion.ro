@@ -1,7 +1,7 @@
 
 'use strict';
 
-(function (window, api, $, TweenMax, ScrollMagic, ScrollScene, Modernizr, IScroll) {
+(function (window, api, $, TweenMax, TimelineMax, ScrollMagic, ScrollScene, Modernizr, IScroll) {
 
   $(document).ready(function ($) {
     // return;
@@ -109,37 +109,29 @@
     // actual scenes here
     $('.scene:not(.fixed)').each(function(i, sceneEl) {
       var s = new ScrollScene({
-            triggerElement: sceneEl,
-            offset: -200,
-            duration: $(sceneEl).data('duration') || $(sceneEl).height()
-          }),
-          timeline = new TimelineMax();
+        triggerElement: sceneEl,
+        offset: -200,
+        duration: $(sceneEl).data('duration') || $(sceneEl).height()
+      });
+
+      var timeline = new TimelineMax();
 
        // for scene element (wrapper)
       $('.scene-element-wrapper', sceneEl).each(function(j, el) {
         console.log(j, el);
         // get the element
         var sceneElement = $('.scene-element', el).get(0),
-            descriptionElement = $('.scene-description', el),
-            tween = TweenMax.fromTo(sceneElement, 1,
-              // {rotation: '135deg'},
-              // {rotation: '-45deg'}
-              {rotation: '135deg'},
-              {
-                rotation: '-120deg',
-                onStart: function() {
-                  // descriptionElement.show();
-                },
-                onComplete: function() {
-                  // descriptionElement.hide();
-                }
-              }
-            );
+            descriptionElement = $('.scene-description', el);
+
+        var tween = TweenMax.fromTo(sceneElement, 1,
+            // {rotation: '135deg'},
+            // {rotation: '-45deg'}
+            {rotation: '135deg'},
+            {rotation: '-135deg'}
+          );
 
         timeline.add(tween);
       });
-
-      window.timeline = timeline;
 
       s.on('enter', function (event) {
         $(s.triggerElement()).addClass('active');
@@ -227,4 +219,4 @@
 
   });
 
-}) (this, this.api = (this.api || {}), this.jQuery, this.TweenMax, this.ScrollMagic, this.ScrollScene, this.Modernizr, this.IScroll);
+}) (this, this.api = (this.api || {}), this.jQuery, this.TweenMax, this.TimelineMax, this.ScrollMagic, this.ScrollScene, this.Modernizr, this.IScroll);
