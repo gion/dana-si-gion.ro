@@ -401,7 +401,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('deploy', [
-        'default',
+        'newer:jshint',
+        'build',
         'gh-pages'
     ]);
 };
