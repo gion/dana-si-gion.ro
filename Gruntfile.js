@@ -341,7 +341,7 @@ module.exports = function (grunt) {
       options: {
         base: 'dist',
         message: process.env.CI_MESSAGE + '\n => ' + process.env.CI_COMMIT_ID + '\n auto-generated commit --skip-ci',
-        silent: true,
+        // silent: true,
         repo: 'https://' + process.env.GH_TOKEN + '@github.com/gion/dana-si-gion.ro.git',
         user: {
           name: process.env.CI_COMMITTER_USERNAME,
