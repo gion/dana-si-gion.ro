@@ -15,8 +15,14 @@
     <link rel="stylesheet" href="../bower_components/ScrollMagic/css/examples.css" />
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/util.css">
+    <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/scenes.css">
     <!-- endbuild -->
+
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -26,11 +32,9 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-<div id="origin-helper"></div>
-  <ul id="bullets">
-  </ul>
+  <ul id="bullets"></ul>
   <div id="content-wrapper">
-    <div id="example-wrapper" class="scrollContainer">
+    <div id="example-wrapper" class="scrollContainer background-blue">
       <div class="scrollContent" style="position: relative;">
         <section id="titlechart">
           <div id="description">
@@ -43,7 +47,7 @@
             <img src="images/hill.png" id="hill">
           </div>
         </section>
-        <section class="demo scene fixed active">
+        <section class="demo scene fixed active" id="bike">
           <div class="scene-element-wrapper">
             <div class="dana-si-gion scene-element">
               <div class="scene-element-content-wrapper">
@@ -56,12 +60,19 @@
             <div class="clearfix"></div>
           </div>
         </section>
-        <section class="demo scene"  data-duration="800">
+
+        <section class="scene main-scene" id="botosani">
+            <h3 class="scene-title">
+              Acum 6 ani
+            </h3>
           <div class="scene-element-wrapper">
-            <div class="scene-element box">
+           <p class="scene-description background-red">
+              Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte
+            </p>
+            <div class="scene-element">
               <div class="scene-element-content-wrapper">
                 <div class="scene-element-content">
-                  1
+                  <img src="images/concert.gif"  alt="">
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -69,25 +80,29 @@
             <div class="clearfix"></div>
           </div>
         </section>
-        <section class="demo scene" data-duration="1200">
+        <section class="scene main-scene" id="sighisoara">
           <div class="scene-element-wrapper">
-            <div class="scene-element box">
+            <p class="scene-description">
+              Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte
+            </p>
+            <div class="scene-element">
               <div class="scene-element-content-wrapper">
                 <div class="scene-element-content">
-                  2
+                  <img src="images/castle.png"  alt="">
                 </div>
               </div>
               <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
           </div>
-        </section>
-        <section class="demo scene" data-duration="1000">
           <div class="scene-element-wrapper">
+            <p class="scene-description">
+               un fapt bine stabilit că cititorul va fi sustras de conţinutul citibil al unei pagini atunci când se uită la aşezarea în
+            </p>
             <div class="scene-element box">
               <div class="scene-element-content-wrapper">
                 <div class="scene-element-content">
-                  3
+                  <img src="images/concert.gif"  alt="">
                 </div>
               </div>
               <div class="clearfix"></div>

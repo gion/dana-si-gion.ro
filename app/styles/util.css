@@ -1,0 +1,43 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/* colors */
+.red {
+  color: #DB3340;
+}
+.background-red {
+  background-color: #DB3340;
+}
+
+.orange {
+  color: #E8B71A;
+}
+.background-orange {
+  background-color: #E8B71A;
+}
+
+.white {
+  color: #F7EAC8;
+}
+.background-white {
+  background-color: #F7EAC8;
+}
+
+.green {
+  color: #1FDA9A;
+}
+.background-green {
+  background-color: #1FDA9A;
+}
+
+.blue {
+  color: #28ABE3;
+}
+.background-blue {
+  background-color: #28ABE3;
+}
