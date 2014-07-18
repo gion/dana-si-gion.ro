@@ -17,8 +17,7 @@
 
 }
 #sighisoara .scene-element-content {
-  border: 1px solid red;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-75%) translateY(-75%);
 }
 #sighisoara .scene-element-content img {
   width: 300px;

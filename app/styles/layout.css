@@ -26,6 +26,13 @@
   background-image: linear-gradient(to right, #83C6E2, #28ABE3, #83C6E2);
 }
 
+.scrollContent {
+  background: url('../images/bg_v.png');
+  background-size: 30% 20px;
+  background-position: 5%;
+  background-repeat: repeat-y;
+}
+
 
 .finished .last-item {
   opacity: 1;

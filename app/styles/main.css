@@ -40,8 +40,15 @@
 
 
 #hill {
+/*  width: 1600px;
+  margin-left: -250px;
+*/
   width: 1600px;
   margin-left: -250px;
+  height: 1600px;
+  border-radius: 100%;
+  border: 8px solid green;
+  background:radial-gradient(ellipse at center, green 0%, #1FDA9A 100%);
 }
 
 
@@ -111,7 +118,7 @@
 
 .scene-description {
   transition: opacity 500ms linear;
-  width: 50%;
+  width: 40%;
   position:relative;
   top: -400px;
   font-family: 'Lobster', cursive;

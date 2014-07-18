@@ -102,7 +102,7 @@
       // scenes.push(s);
       api.bikeScene = s;
       s.addTo(controller);
-      s.addIndicators();
+      // s.addIndicators();
 
     });
 
@@ -148,7 +148,7 @@
       s.setTween(timeline);
       // s.setPin(sceneEl/*, {pushFollowers: true}*/);
       s.addTo(controller);
-      s.addIndicators();
+      // s.addIndicators();
 
       scenes.push(s);
     });
@@ -174,10 +174,10 @@
       });
 
       // add indicators to scrollcontent so they will be moved with it.
-      scene.addIndicators({parent: '.scrollContent'});
+      // scene.addIndicators({parent: '.scrollContent'});
     } else {
       // show indicators (requires debug extension)
-      scene.addIndicators();
+      // scene.addIndicators();
       // firstScene.addIndicators();
     }
 
