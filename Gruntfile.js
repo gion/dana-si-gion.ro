@@ -6,7 +6,6 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
-
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -341,7 +340,9 @@ module.exports = function (grunt) {
     'gh-pages': {
       options: {
         base: 'dist',
-        message: 'auto-generated commit --skip-ci'
+        message: 'auto-generated commit --skip-ci',
+        // silent: true,
+        repo: 'https://' + process.env.GH_TOKEN + '@github.com/gion/dana-si-gion.ro.git'
       },
       src: ['**']
     }
