@@ -340,12 +340,12 @@ module.exports = function (grunt) {
     'gh-pages': {
       options: {
         base: 'dist',
-        message: 'auto-generated commit --skip-ci',
-        // silent: true,
+        message: process.env.CI_MESSAGE + '\n => ' + process.env.CI_COMMIT_ID + '\n auto-generated commit --skip-ci',
+        silent: true,
         repo: 'https://' + process.env.GH_TOKEN + '@github.com/gion/dana-si-gion.ro.git',
         user: {
-          name: 'gion',
-          email: 'bogdan.gradinariu@gmail.com'
+          name: process.env.CI_COMMITTER_USERNAME,
+          email: process.env.CI_COMMITTER_EMAIL
         }
       },
       src: ['**']
