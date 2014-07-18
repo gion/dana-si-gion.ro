@@ -49,9 +49,12 @@
 
     // init controller
     var controller = api.controller = new ScrollMagic({container: '#example-wrapper'});
-
+    var clouds = $('.clouds');
     // init tween
-    var tween = TweenMax.to('#mobileadvanced #hill', 1, {rotation: -2 * 360 + 'deg'});
+    var tween = TweenMax.to('#mobileadvanced #hill', 1, {rotation: -2 * 360 + 'deg', onUpdate: function() {
+      var pos = -(this.progress() * 100) + '% 0';
+      clouds.css('background-position', pos);
+    }});
 
     // init scene
     var scene = api.backgroundScene = new ScrollScene({triggerElement: $('#background').get(0), duration: $('.scrollContent').height()})
@@ -61,6 +64,7 @@
 
     scene.on('enter', function (event) {
       $('body').removeClass('finished');
+      $('body').addClass('scene-background');
       $(scene.triggerElement()).addClass('active');
       console.log('enter', scene.triggerElement());
     });
@@ -68,6 +72,7 @@
     scene.on('leave', function (event) {
       $(scene.triggerElement()).removeClass('active');
       $('body').addClass('finished');
+      $('body').removeClass('scene-background');
       console.info('leave', scene.triggerElement());
     });
 
@@ -115,6 +120,7 @@
       });
 
       var timeline = new TimelineMax();
+      var sceneName = $(sceneEl).attr('id');
 
        // for scene element (wrapper)
       $('.scene-element-wrapper', sceneEl).each(function(j, el) {
@@ -137,11 +143,13 @@
         $(s.triggerElement()).addClass('active');
         var index = scenes.indexOf(s);
         $('#bullets .bullet').removeClass('active').eq(index).addClass('active');
+        $('body').addClass('scene-' + sceneName);
         console.log('enter', s.triggerElement());
       });
 
       s.on('leave', function (event) {
         $(s.triggerElement()).removeClass('active');
+        $('body').removeClass('scene-' + sceneName);
         console.info('leave', s.triggerElement());
       });
 
@@ -201,7 +209,7 @@
 
       $('.scene-element')
         // .css('min-height', h / 2)
-        .css('transformOrigin', (w / 2) + 'px ' + (h / 2)  + 'px');
+        .css('transformOrigin', (w / 2 + 100) + 'px ' + (h / 2 + 100)  + 'px');
       $('#origin-helper').css({
         top: (h / 2) + ($('.scene.active .scene-element-wrapper').length ? $('.scene.active .scene-element-wrapper').offset().top : 0),
         left: (w / 2)
