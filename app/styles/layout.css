@@ -1,5 +1,9 @@
 body {}
 
+.touch #example-wrapper {
+  overflow: hidden;
+}
+
 #bullets {
   position: fixed;
   right: 0;
@@ -19,7 +23,8 @@ body {}
   transform: scale(0.3) translateZ(0);
 }
 
-#bullets .bullet.active {
+#bullets .bullet.active,
+#bullets .bullet:hover {
   opacity: 1;
 }
 

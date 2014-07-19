@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js rem-root">
   <head>
     <meta charset="utf-8">
     <title>dana si gion ro</title>
@@ -76,11 +76,16 @@
         <section class="scene main-scene" id="botosani">
           <div class="scene-element-wrapper">
             <p class="scene-title">
-              Acum 6 ani
+              <span class="ro" lang="ro">
+                Totul a inceput acum 6 ani...
+              </span>
             </p>
-            <p class="scene-description background-red">
-              Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte
-            </p>
+            <div class="scene-description background-red">
+              <span class="ro" lang="ro">
+                cand... <strong>Gion</strong> - un tanar "muzicutionist" - concerta la Botosani si
+                <strong>Danua</strong> - proaspata studenta - s-au intalnit
+              </span>
+            </div>
             <div class="scene-element">
               <div class="scene-element-content-wrapper">
                 <div class="scene-element-content">
@@ -92,13 +97,41 @@
             <div class="clearfix"></div>
           </div>
         </section>
+
+
+        <section class="scene main-scene" id="iasi">
+          <div class="scene-element-wrapper">
+            <p class="scene-title">
+              <span class="ro" lang="ro">
+                jazz
+              </span>
+            </p>
+            <div class="scene-description background-red">
+              <span class="ro" lang="ro">
+                Iasul, toate concertele si Jazz-ul i-au apropiat
+              </span>
+            </div>
+            <div class="scene-element palatul-culturii">
+              <div class="scene-element-content-wrapper">
+                <div class="scene-element-content">
+                  <img src="images/palatul-culturii.jpg"  alt="">
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <img src="images/jazz-2.png"  alt="" class="jazz">
+          </div>
+        </section>
+
+
         <section class="scene main-scene" id="sighisoara">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               La sighisoara..
             </p>
             <p class="scene-description">
-              Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte
+              pana cand orasul lor de suflet - Sighisoara - i-a adus impreuna
             </p>
             <div class="scene-element">
               <div class="scene-element-content-wrapper">
@@ -110,21 +143,34 @@
             </div>
             <div class="clearfix"></div>
           </div>
+        </section>
+
+
+        <section class="scene main-scene" id="love">
           <div class="scene-element-wrapper">
-            <p class="scene-description">
-               un fapt bine stabilit că cititorul va fi sustras de conţinutul citibil al unei pagini atunci când se uită la aşezarea în
+            <p class="scene-title">
+              <span class="ro" lang="ro">
+                love was in the air
+              </span>
             </p>
-            <div class="scene-element box">
+            <div class="scene-description background-red">
+              <span class="ro" lang="ro">
+                De atunci, au fost de nedespartit... atat la camin, in sesiuni, cat si la excursii si petreceri.
+              </span>
+            </div>
+            <div class="scene-element palatul-culturii">
               <div class="scene-element-content-wrapper">
                 <div class="scene-element-content">
-                  <img src="images/concert.gif"  alt="">
+                  <img src="images/palatul-culturii.jpg"  alt="">
                 </div>
               </div>
               <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
+            <img src="images/hearts.png"  alt="" class="hearts">
           </div>
         </section>
+
       </div>
       <section class="last-item">
         <div>
@@ -154,8 +200,7 @@
     <script src="../bower_components/ScrollMagic/js/jquery.scrollmagic.js"></script>
     <script src="../bower_components/lodash/dist/lodash.compat.js"></script>
     <!-- endbower -->
-    <script src="../bower_components/iscroll/build/iscroll.js"></script>
-    <script src="../bower_components/ScrollMagic/js/jquery.scrollmagic.debug.js"></script>
+    <script src="scripts/vendor/iscroll.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

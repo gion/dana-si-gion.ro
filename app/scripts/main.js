@@ -8,7 +8,6 @@
 
     $('#bullets').on('click', '.bullet', function (e) {
       var index = $(e.target).index();
-      console.log(index, e.target);
       api.goToScene(index);
     });
 
@@ -16,32 +15,32 @@
       if(api.animateScroll.tween) {
         api.animateScroll.tween.kill();
       }
-      console.log('animate scroll', top);
 
       var scrollContainer = $('.scrollContainer').get(0),
         curScroll = {
           y: scrollContainer.scrollTop
         };
 
-      api.animateScroll.tween = TweenMax.to(curScroll, speed || 1, {
+      api.animateScroll.tween = TweenMax.to(curScroll, speed || 3, {
         y: top,
         onUpdate: function() {
           scrollContainer.scrollTop = curScroll.y;
-        }
+        },
+        ease: window.Cubic.easeInOut
       });
     };
 
 
     api.goToScene = function(index) {
-      var scene = $('.scene:not(.fixed)').eq(index),
+      var scene = api.scenes[index],
           scrollTop;
 
-      if(!api.scenes[index]) {
+      if(!scene) {
         console.error('not a valid index scene', index);
         return false;
       }
 
-      scrollTop = api.scenes[index].startPosition() - $(window).height() /  2 + 10;
+      scrollTop = scene.startPosition() - $(window).height() /  2 + scene.duration() * 0.2;
 
       api.animateScroll(scrollTop);
     };
@@ -72,7 +71,9 @@
     };
 
     api.activateBubble = function(sceneName) {
-      $('.bubble-wrapper, .bubble-wrapper .bubble-3 a.' + sceneName).addClass('active');
+      if($('.bubble-wrapper .bubble-3 a.' + sceneName).addClass('active').length) {
+        $('.bubble-wrapper').addClass('active');
+      }
     };
     api.deactivateBubble = function(sceneName) {
       $('.bubble-wrapper, .bubble-wrapper .bubble-3 a.' + sceneName).removeClass('active');
@@ -80,15 +81,18 @@
 
     api.onTimelineUpdate =  function() {
       var progress = this.progress(),
-          offset = 0.45;
-      if(progress > offset && progress < 1 - offset && !this.bubbleActivated) {
+          offset = 0.25,
+          start = 0.15,
+          stop = 0.8;
+
+      if(progress > start && progress < stop && !this.bubbleActivated) {
         this.bubbleActivated = true;
         api.activateBubble(this.sceneName);
-      } else if ((progress < offset || progress > 1 - offset) && this.bubbleActivated) {
+      } else if ((progress < start || progress > stop) && this.bubbleActivated) {
         this.bubbleActivated = false;
         api.deactivateBubble(this.sceneName);
       }
-      // console.log(progress, this.bubbleActivated);
+      console.log(progress, this.bubbleActivated);
     };
 
 
@@ -155,7 +159,7 @@
       // scenes.push(s);
       api.bikeScene = s;
       s.addTo(controller);
-      s.addIndicators();
+      // s.addIndicators();
 
     });
 
@@ -184,27 +188,26 @@
         var tween = TweenMax.fromTo(sceneElement, 1,
             // {rotation: '135deg'},
             // {rotation: '-45deg'}
-            {rotation: '135deg'},
-            {rotation: '-135deg'}
+            {rotation: '135deg'/*, ease: window.Cubic.easeOut*/},
+            {rotation: '-135deg'/*, ease: window.Cubic.easeIn*/}
           );
 
         timeline.add(tween);
       });
 
-      var index = scenes.indexOf(s),
-          bullet = $('#bullets .bullet').eq(index),
+      var index = scenes.length,
           body = $('body'),
           triggerElement = $(s.triggerElement());
 
       s.on('enter', function (event) {
         triggerElement.addClass('active');
-        bullet.addClass('active');
+        $('#bullets .bullet').eq(index).addClass('active');
         body.addClass('scene-' + sceneName);
         // console.log('enter', s.triggerElement());
       });
 
       s.on('leave', function (event) {
-        bullet.removeClass('active');
+        $('#bullets .bullet').eq(index).removeClass('active');
         triggerElement.removeClass('active');
         body.removeClass('scene-' + sceneName);
         // console.info('leave', s.triggerElement());
@@ -213,7 +216,7 @@
       s.setTween(timeline);
       // s.setPin(sceneEl/*, {pushFollowers: true}*/);
       s.addTo(controller);
-      s.addIndicators();
+      // s.addIndicators();
 
       scenes.push(s);
     });
@@ -226,23 +229,25 @@
     if (Modernizr.touch) {
       // using iScroll but deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
       // if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
-      var myScroll = new IScroll('#example-wrapper', {scrollX: false, scrollY: true, scrollbars: true, useTransform: false, useTransition: false, probeType: 3});
+      api.myScroll = new IScroll('#example-wrapper', {
+        mouseWheel: true,
+        scrollX: false,
+        scrollY: true,
+        scrollbars: true,
+        useTransform: false,
+        useTransition: false,
+        probeType: 3
+      });
 
       // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
-      controller.scrollPos(function () {
-        return -myScroll.y;
+      api.controller.scrollPos(function () {
+        return -api.myScroll.y;
       });
 
       // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
-      myScroll.on('scroll', function () {
-        controller.update();
+      api.myScroll.on('scroll', function () {
+        api.controller.update();
       });
-
-      // add indicators to scrollcontent so they will be moved with it.
-      scene.addIndicators({parent: '.scrollContent'});
-    } else {
-      // show indicators (requires debug extension)
-      scene.addIndicators();
     }
 
     function onResize () {

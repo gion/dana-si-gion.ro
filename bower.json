@@ -5,11 +5,8 @@
     "bootstrap": "~3.0.3",
     "modernizr": "~2.6.2",
     "jquery": "~1.11.0",
-    "iscroll": "~5.1.2",
     "ScrollMagic": "~1.0.8",
     "lodash": "~2.4.1"
   },
-  "devDependencies": {
-    "lodash": "~2.4.1"
-  }
+  "devDependencies": {}
 }

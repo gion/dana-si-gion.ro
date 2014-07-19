@@ -13,6 +13,19 @@
 
 
 /* 2nd scene */
+#iasi {
+	position: relative;
+	height: 500px;
+}
+
+#iasi .jazz {
+	position: absolute;
+	top: -300px;
+	right: 0;
+}
+
+
+/* 3rd scene */
 #sighisoara {
 
 }
@@ -22,6 +35,24 @@
 #sighisoara .scene-element-content img {
   width: 300px;
   height: auto;
+}
+
+
+/* 4th scene */
+#love {
+	position: relative;
+	height: 700px;
+}
+#love .hearts {
+	position: absolute;
+	top: -500px;
+	right: 0;
+	opacity: 0;
+	transition: opacity 1s 300ms ease-in-out;
+	z-index: 0;
+}
+.scene-love #love .hearts {
+	opacity: 1;
 }
 
 
