@@ -80,7 +80,7 @@
 
     api.onTimelineUpdate =  function() {
       var progress = this.progress(),
-          offset = 0.4;
+          offset = 0.45;
       if(progress > offset && progress < 1 - offset && !this.bubbleActivated) {
         this.bubbleActivated = true;
         api.activateBubble(this.sceneName);
@@ -88,7 +88,7 @@
         this.bubbleActivated = false;
         api.deactivateBubble(this.sceneName);
       }
-      console.log(progress, this.bubbleActivated);
+      // console.log(progress, this.bubbleActivated);
     };
 
 
@@ -191,17 +191,22 @@
         timeline.add(tween);
       });
 
+      var index = scenes.indexOf(s),
+          bullet = $('#bullets .bullet').eq(index),
+          body = $('body'),
+          triggerElement = $(s.triggerElement());
+
       s.on('enter', function (event) {
-        $(s.triggerElement()).addClass('active');
-        var index = scenes.indexOf(s);
-        $('#bullets .bullet').removeClass('active').eq(index).addClass('active');
-        $('body').addClass('scene-' + sceneName);
+        triggerElement.addClass('active');
+        bullet.addClass('active');
+        body.addClass('scene-' + sceneName);
         // console.log('enter', s.triggerElement());
       });
 
       s.on('leave', function (event) {
-        $(s.triggerElement()).removeClass('active');
-        $('body').removeClass('scene-' + sceneName);
+        bullet.removeClass('active');
+        triggerElement.removeClass('active');
+        body.removeClass('scene-' + sceneName);
         // console.info('leave', s.triggerElement());
       });
 
