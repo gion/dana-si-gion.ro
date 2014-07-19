@@ -64,7 +64,7 @@
 
       $.each(bubbles, function(i, bubble) {
         parent.append(template(bubble));
-      });          
+      });
     };
 
     api.initBubbles = function () {
