@@ -1,5 +1,7 @@
 .scene {
   /*opacity: 0;*/
+  pointer-events: none;
+  user-select: none;
 }
 
 .scene.active {
@@ -101,6 +103,17 @@
   margin-top: 500px;
 }
 
+#bike {
+  pointer-events: all;
+}
+/*#bike > * {
+  pointer-events: none;
+}
+#bike > .pointer-events-all {
+  pointer-events: all;
+}*/
+
+
 .dana-si-gion .scene-element-content {
   width: 400px;
   height: 400px;
@@ -148,17 +161,21 @@
   right: 71px;
   overflow: hidden;
 }
-.dana-si-gion .scene-element-content .bubble-wrapper .bubble-3 a{
+.dana-si-gion .scene-element-content .bubble-wrapper .bubble-3 a {
   display: none;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* sighisoara activated */
-.scene-sighisoara .dana-si-gion .scene-element-content .bubble-wrapper {
+.dana-si-gion .scene-element-content .bubble-wrapper.active {
   transform: none;
 }
-.scene-sighisoara .dana-si-gion .scene-element-content .bubble-wrapper a.sighisoara{
-  display: inline;
+.scene-sighisoara .dana-si-gion .scene-element-content .bubble-wrapper.active a.active {
+  display: block;
 }
+
 
 
 .scene-title {
@@ -171,7 +188,6 @@
   top: 100px;
   left: 100px;
   width: 200px;
-  height: 100px;
   color: black;
   z-index: 99999999;
   transform: translateX(-50%);

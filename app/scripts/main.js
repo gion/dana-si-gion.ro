@@ -1,7 +1,7 @@
 
 'use strict';
 
-(function (window, api, $, TweenMax, TimelineMax, ScrollMagic, ScrollScene, Modernizr, IScroll) {
+(function (window, api, $, _, TweenMax, TimelineMax, ScrollMagic, ScrollScene, Modernizr, IScroll) {
 
   $(document).ready(function ($) {
     // return;
@@ -23,7 +23,7 @@
           y: scrollContainer.scrollTop
         };
 
-      api.animateScroll.tween = TweenMax.to(curScroll, speed || 3, {
+      api.animateScroll.tween = TweenMax.to(curScroll, speed || 1, {
         y: top,
         onUpdate: function() {
           scrollContainer.scrollTop = curScroll.y;
@@ -33,16 +33,64 @@
 
 
     api.goToScene = function(index) {
-      var scene = $('.scene:not(.fixed)').eq(index);
+      var scene = $('.scene:not(.fixed)').eq(index),
+          scrollTop;
 
-      if(!scene.length) {
+      if(!api.scenes[index]) {
         console.error('not a valid index scene', index);
         return false;
       }
-      console.log('go to scene', index);
 
-      api.animateScroll(scene.offset().top);
+      scrollTop = api.scenes[index].startPosition() - $(window).height() /  2 + 10;
+
+      api.animateScroll(scrollTop);
     };
+
+
+    api.getBubbles = function () {
+      if(!api.getBubbles.promise) {
+        api.getBubbles.promise = $.ajax({
+          url: 'data/bubbles.json',
+          method: 'get',
+          dataType: 'json'
+        });
+      }
+      return api.getBubbles.promise;
+    };
+
+    api.renderBubbles = function (bubbles) {
+      var template = _.template('<a class="<%=scene%>" target="blank" title="<%=title%>" href="<%=link%>" style="background-image: url(<%=image%>)"></a>'),
+          parent = $('.bubble-3').empty();
+
+      $.each(bubbles, function(i, bubble) {
+        parent.append(template(bubble));
+      });          
+    };
+
+    api.initBubbles = function () {
+      api.getBubbles().success(api.renderBubbles);
+    };
+
+    api.activateBubble = function(sceneName) {
+      $('.bubble-wrapper, .bubble-wrapper .bubble-3 a.' + sceneName).addClass('active');
+    };
+    api.deactivateBubble = function(sceneName) {
+      $('.bubble-wrapper, .bubble-wrapper .bubble-3 a.' + sceneName).removeClass('active');
+    };
+
+    api.onTimelineUpdate =  function() {
+      var progress = this.progress(),
+          offset = 0.4;
+      if(progress > offset && progress < 1 - offset && !this.bubbleActivated) {
+        this.bubbleActivated = true;
+        api.activateBubble(this.sceneName);
+      } else if ((progress < offset || progress > 1 - offset) && this.bubbleActivated) {
+        this.bubbleActivated = false;
+        api.deactivateBubble(this.sceneName);
+      }
+      console.log(progress, this.bubbleActivated);
+    };
+
 
     var scenes =  api.scenes = [];
 
@@ -66,14 +114,14 @@
       $('body').removeClass('finished');
       $('body').addClass('scene-background');
       $(scene.triggerElement()).addClass('active');
-      console.log('enter', scene.triggerElement());
+      // console.log('enter', scene.triggerElement());
     });
 
     scene.on('leave', function (event) {
       $(scene.triggerElement()).removeClass('active');
       $('body').addClass('finished');
       $('body').removeClass('scene-background');
-      console.info('leave', scene.triggerElement());
+      // console.info('leave', scene.triggerElement());
     });
 
     // scenes.push(scene);
@@ -96,18 +144,18 @@
 
       s.on('enter', function (event) {
         $(s.triggerElement()).addClass('active');
-        console.log('enter', s.triggerElement());
+        // console.log('enter', s.triggerElement());
       });
 
       s.on('leave', function (event) {
         $(s.triggerElement()).removeClass('active');
-        console.info('leave', s.triggerElement());
+        // console.info('leave', s.triggerElement());
       });
 
       // scenes.push(s);
       api.bikeScene = s;
       s.addTo(controller);
-      // s.addIndicators();
+      s.addIndicators();
 
     });
 
@@ -119,12 +167,16 @@
         duration: $(sceneEl).data('duration') || $(sceneEl).height()
       });
 
-      var timeline = new TimelineMax();
       var sceneName = $(sceneEl).attr('id');
+
+      var timeline = new TimelineMax({
+        onUpdate: api.onTimelineUpdate
+      });
+      timeline.sceneName = sceneName;
+
 
        // for scene element (wrapper)
       $('.scene-element-wrapper', sceneEl).each(function(j, el) {
-        console.log(j, el);
         // get the element
         var sceneElement = $('.scene-element', el).get(0),
             descriptionElement = $('.scene-description', el);
@@ -144,19 +196,19 @@
         var index = scenes.indexOf(s);
         $('#bullets .bullet').removeClass('active').eq(index).addClass('active');
         $('body').addClass('scene-' + sceneName);
-        console.log('enter', s.triggerElement());
+        // console.log('enter', s.triggerElement());
       });
 
       s.on('leave', function (event) {
         $(s.triggerElement()).removeClass('active');
         $('body').removeClass('scene-' + sceneName);
-        console.info('leave', s.triggerElement());
+        // console.info('leave', s.triggerElement());
       });
 
       s.setTween(timeline);
       // s.setPin(sceneEl/*, {pushFollowers: true}*/);
       s.addTo(controller);
-      // s.addIndicators();
+      s.addIndicators();
 
       scenes.push(s);
     });
@@ -182,11 +234,10 @@
       });
 
       // add indicators to scrollcontent so they will be moved with it.
-      // scene.addIndicators({parent: '.scrollContent'});
+      scene.addIndicators({parent: '.scrollContent'});
     } else {
       // show indicators (requires debug extension)
-      // scene.addIndicators();
-      // firstScene.addIndicators();
+      scene.addIndicators();
     }
 
     function onResize () {
@@ -219,12 +270,14 @@
 
 
     $.each(api.scenes, function() {
-      $('<li class="bullet cursor-pointer"></li>').appendTo('#bullets');
+      $('<li class="bullet heart cursor-pointer"></li>').appendTo('#bullets');
     });
 
     $(window).on('resize', onResize);
     onResize();
 
+    api.initBubbles();
+
   });
 
-}) (this, this.api = (this.api || {}), this.jQuery, this.TweenMax, this.TimelineMax, this.ScrollMagic, this.ScrollScene, this.Modernizr, this.IScroll);
+}) (this, this.api = (this.api || {}), this.jQuery, this._, this.TweenMax, this.TimelineMax, this.ScrollMagic, this.ScrollScene, this.Modernizr, this.IScroll);

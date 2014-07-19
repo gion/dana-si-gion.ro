@@ -1,0 +1,8 @@
+@media (max-width: 1500px) { 
+    .scene-title {
+      top: 10px;
+      left: 600px;
+      width: 300px;
+      transform: translateY(-50%);
+    }
+}
