@@ -34,6 +34,8 @@ html.rem-root {
 .scene-element {
   display: inline-block;
   float: left;
+  position: relative;
+  z-index: 1;
 }
 .scene-element-content-wrapper {
   float: left;
@@ -214,6 +216,6 @@ html.rem-root {
   z-index: 99999998;
 }
 
-.scene-description  * { 
+.scene-description  * {
   font-size: 1rem;
 }
