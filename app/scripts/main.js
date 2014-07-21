@@ -92,7 +92,7 @@
         this.bubbleActivated = false;
         api.deactivateBubble(this.sceneName);
       }
-      console.log(progress, this.bubbleActivated);
+      // console.log(progress, this.bubbleActivated);
     };
 
 
@@ -113,6 +113,7 @@
             .setTween(tween)
             .setPin('#mobileadvanced', {pushFollowers: false})
             .addTo(controller);
+    scene.tween = tween;
 
     scene.on('enter', function (event) {
       $('body').removeClass('finished');
@@ -144,6 +145,8 @@
               {rotation: '125deg'}
             )
           );
+
+        s.tween = tween;
       });
 
       s.on('enter', function (event) {
@@ -214,6 +217,8 @@
       });
 
       s.setTween(timeline);
+      s.tween = timeline;
+
       // s.setPin(sceneEl/*, {pushFollowers: true}*/);
       s.addTo(controller);
       // s.addIndicators();
@@ -221,8 +226,18 @@
       scenes.push(s);
     });
 
-    // var firstScene = new ScrollScene({triggerElement: '#scene-1', duration: $('#scene-1').height(), offset: 0})
-    //          .addTo(controller);
+
+    //extra tweens
+
+    // good morning tween
+    var goodMorningTween = TweenMax.fromTo('.good-morning-1', 1, {top: '-600px'}, {top: 0});
+    api.scenes[5].tween.add(goodMorningTween);
+
+    api.controller.update();
+
+
+
+
 
 
     // make sure we only do this on mobile:

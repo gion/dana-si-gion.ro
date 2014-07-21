@@ -12,6 +12,12 @@ html.rem-root {
   z-index: auto;
   opacity: 1;
 }
+
+.scene.active .scene-element,
+.scene.active .scrolling-element {
+  opacity: 1;
+}
+
 .scene.active .scene-title,
 .scene.active .scene-description {
   opacity: 1;
@@ -36,69 +42,35 @@ html.rem-root {
   float: left;
   position: relative;
   z-index: 1;
+  opacity: 0;
+  transition: opacity 300ms 0s linear;
 }
+
 .scene-element-content-wrapper {
   float: left;
   transform: rotate(-45deg) translateX(100%);
   transform-origin: 50% 100%;
 }
+
 .scene-element-content {
   transform: translateX(-50%) translateY(-50%);
+}
 
-/*  position: relative;
-  top: 200px;
-  left: 200px;*/
+.scrolling-element {
+  opacity: 0;
+  transition: opacity 300ms 0s linear;
 }
 
 
-
 #hill {
-/*  width: 1600px;
-  margin-left: -250px;
-*/
   width: 1600px;
   margin-left: -250px;
   height: 1600px;
   border-radius: 100%;
   border: 8px solid green;
-  background:radial-gradient(ellipse at center, green 0%, #1FDA9A 100%);
+  background: radial-gradient(ellipse at center, green 0%, #1FDA9A 100%);
 }
 
-
-/*.box .scene-element-content-wrapper {
-  width: 100px;
-  height: 100px;
-  background: blue;
-  border: 10px solid red;
-  line-height: 100px;
-  font-size: 80px !important;
-  color: #f90;
-  font-weight: bold;
-  padding-bottom: 100px;
-}
-
-.scene:last-child .box .scene-element-content-wrapper {
-  width: 200px;
-  height: 400px;
-  background: red;
-  border: 10px solid green;
-  line-height: 100px;
-  font-size: 80px !important;
-  color: #f90;
-  font-weight: bold;
-}*/
-
-
-
-#origin-helper {
-  border-radius: 100%;
-  background: orange;
-  border: 10px solid blue;
-  width: 10px;
-  height: 10px;
-  position: fixed;
-  z-index: 9999;
-}
 
 .scrollContent {
   width: 1200px !important;
@@ -112,13 +84,6 @@ html.rem-root {
 #bike {
   pointer-events: all;
 }
-/*#bike > * {
-  pointer-events: none;
-}
-#bike > .pointer-events-all {
-  pointer-events: all;
-}*/
-
 
 .dana-si-gion .scene-element-content {
   width: 400px;
@@ -183,8 +148,6 @@ html.rem-root {
 }
 
 
-
-
 .scene-title {
   transition: all 500ms 0s linear;
   font-family: 'Lobster', cursive;
@@ -213,7 +176,8 @@ html.rem-root {
   border-radius: 20px;
   background: #F7EAC8;
   padding: 20px;
-  z-index: 99999998;
+  /*z-index: 99999998;*/
+  z-index: 99;
 }
 
 .scene-description  * {

@@ -40,19 +40,59 @@
 
 /* 4th scene */
 #love {
-	position: relative;
-	height: 700px;
+  position: relative;
+  height: 700px;
 }
 #love .hearts {
-	position: absolute;
-	top: -500px;
-	right: 0;
-	opacity: 0;
-	transition: opacity 1s 300ms ease-in-out;
-	z-index: 0;
+  position: absolute;
+  top: -500px;
+  right: 0;
+  opacity: 0;
+  transition: opacity 1s 300ms ease-in-out;
+  z-index: 0;
 }
 .scene-love #love .hearts {
-	opacity: 1;
+  opacity: 1;
 }
 
+
+
+
+/* 5th scene */
+#mutat {
+  position: relative;
+  height: 800px;
+}
+
+#mutat .scene-element .scrolling-element {
+  position: relative;
+  top: -30px;
+}
+
+
+/* 6th scene */
+#home-sweet-home {
+  position: relative;
+  height: 800px;
+  overflow: hidden;
+}
+
+#home-sweet-home .scrolling-element {
+  transition-delay: 1s;
+}
+
+.good-morning-wrapper {
+  position: relative;
+  min-height: 400px;
+  top: 600px;
+}
+.good-morning {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateY(-100%);
+}
+.good-morning-1 {
+  top: -600px;
+}
 
