@@ -234,6 +234,8 @@
       scrollX: false,
       scrollY: true,
       scrollbars: true,
+      interactiveScrollbars: true,
+      shrinkScrollbars: 'scale',
       useTransform: false,
       useTransition: false,
       probeType: 3
@@ -249,6 +251,32 @@
       api.controller.update();
     });
 
+
+    // adaptde from http://stackoverflow.com/questions/4127118/can-you-detect-dragging-in-jquery
+    function enableDragCursor() {
+      var isDragging = false,
+          $el = $('#example-wrapper'),
+          $win = $(window),
+          updateDragClass = function(drag) {
+            $el.toggleClass('grabbing', drag);
+          };
+
+      $el
+        .on('mousedown', function(e) {
+          $win.on('mousemove.drag', function() {
+            if(isDragging !== true) {
+              isDragging = true;
+              updateDragClass(isDragging);
+            }
+            $(window).off('mousemove.drag');
+          });
+        })
+        .on('mouseup', function(e) {
+          $win.off('mousemove.drag');
+          isDragging = false;
+          updateDragClass(isDragging);
+        });
+    }
 
 
     function onResize () {
@@ -286,6 +314,7 @@
 
     $(window).on('resize', onResize);
     onResize();
+    enableDragCursor();
 
     api.initBubbles();
 

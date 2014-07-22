@@ -2,6 +2,9 @@ body {
     /*transform: scale(0.3);*/
 }
 
+.grab { cursor: url(https://mail.google.com/mail/images/2/openhand.cur) 8 8, move; }
+.grabbing { cursor: url(https://mail.google.com/mail/images/2/closedhand.cur) 8 8, move; }
+
 #example-wrapper {
   overflow: hidden;
 }
