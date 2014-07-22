@@ -12,22 +12,7 @@
     });
 
     api.animateScroll = function (top, speed) {
-      if(api.animateScroll.tween) {
-        api.animateScroll.tween.kill();
-      }
-
-      var scrollContainer = $('.scrollContainer').get(0),
-        curScroll = {
-          y: scrollContainer.scrollTop
-        };
-
-      api.animateScroll.tween = TweenMax.to(curScroll, speed || 3, {
-        y: top,
-        onUpdate: function() {
-          scrollContainer.scrollTop = curScroll.y;
-        },
-        ease: window.Cubic.easeInOut
-      });
+      api.myScroll.scrollTo(0, -top, 2000, IScroll.utils.ease.circular);
     };
 
 
@@ -239,31 +224,32 @@
 
 
 
+    // init Iscroll
 
-    // make sure we only do this on mobile:
-    if (Modernizr.touch) {
-      // using iScroll but deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
-      // if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
-      api.myScroll = new IScroll('#example-wrapper', {
-        mouseWheel: true,
-        scrollX: false,
-        scrollY: true,
-        scrollbars: true,
-        useTransform: false,
-        useTransition: false,
-        probeType: 3
-      });
+    // using iScroll but deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
+    // if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
+    api.myScroll = new IScroll('#example-wrapper', {
+      mouseWheel: true,
+      mouseWheelSpeed: 40,
+      scrollX: false,
+      scrollY: true,
+      scrollbars: true,
+      useTransform: false,
+      useTransition: false,
+      probeType: 3
+    });
 
-      // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
-      api.controller.scrollPos(function () {
-        return -api.myScroll.y;
-      });
+    // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
+    api.controller.scrollPos(function () {
+      return -api.myScroll.y;
+    });
 
-      // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
-      api.myScroll.on('scroll', function () {
-        api.controller.update();
-      });
-    }
+    // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
+    api.myScroll.on('scroll', function () {
+      api.controller.update();
+    });
+
+
 
     function onResize () {
       var $win = $(window),
