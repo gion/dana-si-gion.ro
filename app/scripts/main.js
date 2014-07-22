@@ -230,7 +230,7 @@
     // if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
     api.myScroll = new IScroll('#example-wrapper', {
       mouseWheel: true,
-      mouseWheelSpeed: 40,
+      mouseWheelSpeed: 10,
       scrollX: false,
       scrollY: true,
       scrollbars: true,

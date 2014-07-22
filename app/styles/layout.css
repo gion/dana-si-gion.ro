@@ -1,4 +1,6 @@
-body {}
+body {
+    /*transform: scale(0.3);*/
+}
 
 #example-wrapper {
   overflow: hidden;
