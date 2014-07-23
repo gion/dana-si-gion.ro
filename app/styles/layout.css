@@ -9,12 +9,21 @@ body {
   overflow: hidden;
 }
 
-#bullets {
+#stats {
   position: fixed;
-  right: 0;
+  right: -20px;
   top: 100px;
   padding-right: 50px;
   z-index: 1000;
+}
+
+.lang-selector {
+  height: 50px;
+  display: block;
+}
+
+#bullets {
+  margin-right: 5px;
 }
 
 #bullets .bullet {

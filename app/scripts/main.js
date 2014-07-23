@@ -1,4 +1,3 @@
-
 'use strict';
 
 (function (window, api, $, _, TweenMax, TimelineMax, ScrollMagic, ScrollScene, Modernizr, IScroll) {
@@ -88,7 +87,7 @@
     var controller = api.controller = new ScrollMagic({container: '#example-wrapper'});
     var clouds = $('.clouds');
     // init tween
-    var tween = TweenMax.to('#mobileadvanced #hill', 1, {rotation: -2 * 360 + 'deg', onUpdate: function() {
+    var tween = TweenMax.to('#mobileadvanced #hill', 1, {rotation: -1 * 360 + 'deg', onUpdate: function() {
       var pos = -(this.progress() * 100) + '% 0';
       clouds.css('background-position', pos);
     }});
@@ -126,8 +125,10 @@
           .setPin(el, {pushFollowers: false})
           .setTween(
             TweenMax.fromTo(sceneElement, 1,
-              {rotation: '-125deg'},
-              {rotation: '125deg'}
+              // {rotation: '-40deg'},
+              // {rotation: '110deg'}
+              {rotation: '0deg'},
+              {rotation: '100deg'}
             )
           );
 
@@ -174,10 +175,8 @@
             descriptionElement = $('.scene-description', el);
 
         var tween = TweenMax.fromTo(sceneElement, 1,
-            // {rotation: '135deg'},
-            // {rotation: '-45deg'}
-            {rotation: '135deg'/*, ease: window.Cubic.easeOut*/},
-            {rotation: '-135deg'/*, ease: window.Cubic.easeIn*/}
+            {rotation: '110deg'},
+            {rotation: '-90deg'}
           );
 
         timeline.add(tween);
@@ -218,38 +217,126 @@
     var goodMorningTween = TweenMax.fromTo('.good-morning-1', 1, {top: '-600px'}, {top: 0});
     api.scenes[5].tween.add(goodMorningTween);
 
+
+    // the wall tween
+    var theWallTween = TweenMax.to('#the-wall img.the-wall', 1, { top: '-1000px'});
+    api.scenes[8].tween.add(theWallTween);
+
+
+    // the ring tween
+    var ringTween = TweenMax.fromTo('#the-proposal .ring', 1, {
+      'margin-top': -100 * 10 + 'px',
+      'margin-left': 180 * 4 + 'px'
+    }, {
+      'margin-top': '150px',
+      'margin-left': '25px',
+      onStart: function() {
+        $('#the-proposal .hand').addClass('active');
+      },
+      onUpdate: function() {
+        var progress = this.progress();
+
+        if(!this._animatedRing) {
+          if(progress > 0.7) {
+            $('#the-proposal .ring').addClass('active');
+            this._animatedRing = true;
+          }
+        } else if(progress < 0.7 || progress > 0.95) {
+          $('#the-proposal .ring').removeClass('active');
+          this._animatedRing = false;
+        }
+      },
+      onComplete: function() {
+        $('#the-proposal .hand').removeClass('active');
+      }
+    });
+
+    api.scenes[9].tween.add(ringTween);
+
+
+
+
+    // never's paws
+    var pawsContainer = $('#never .paws');
+    var pawsTween = TweenMax.to({x:0}, 1, {
+      x: 1 ,
+      onStart: function() {
+        // reset the step classes
+        pawsContainer.attr('class', 'scrolling-element paws');
+      },
+      onUpdate: function() {
+        var p = this.progress(),
+            totalSteps = 16,
+            // using "ceil" because the steps are indexed from 1
+            currentStep = Math.ceil(p / (1 / totalSteps)),
+            classArr = ['scrolling-element', 'paws'];
+
+        for(var i = 1; i <= currentStep; i++) {
+          classArr.push('step-' + i);
+        }
+        pawsContainer.attr('class', classArr.join(' '));
+      }
+    });
+
+    api.scenes[10].tween.add(pawsTween);
+
+
+
+    // bikes tween
+    // simillar to the theWallTween
+    var bikesTween = TweenMax.fromTo('#civila img.bikes', 1, {top: '1000px'}, {top: '-1500px'});
+    api.scenes[11].tween.add(bikesTween);
+
+
+
+
     api.controller.update();
 
 
-
+    function otherLayoutStuff() {
+      $('html').on('click', '.prevent-default', function(e) {
+        e.preventDefault();
+      });
+    }
 
 
     // init Iscroll
+    function initScroll() {
 
-    // using iScroll but deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
-    // if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
-    api.myScroll = new IScroll('#example-wrapper', {
-      mouseWheel: true,
-      mouseWheelSpeed: 10,
-      scrollX: false,
-      scrollY: true,
-      scrollbars: true,
-      interactiveScrollbars: true,
-      shrinkScrollbars: 'scale',
-      useTransform: false,
-      useTransition: false,
-      probeType: 3
-    });
+      // using iScroll but deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
+      // if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
+      api.myScroll = new IScroll('#example-wrapper', {
+        mouseWheel: true,
+        mouseWheelSpeed: 10,
+        scrollX: false,
+        scrollY: true,
+        scrollbars: true,
+        interactiveScrollbars: true,
+        shrinkScrollbars: 'scale',
+        useTransform: false,
+        useTransition: false,
+        probeType: 3
+      });
 
-    // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
-    api.controller.scrollPos(function () {
-      return -api.myScroll.y;
-    });
+      // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
+      api.controller.scrollPos(function () {
+        return -api.myScroll.y;
+      });
 
-    // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
-    api.myScroll.on('scroll', function () {
-      api.controller.update();
-    });
+      // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
+      api.myScroll.on('scroll', function () {
+        api.controller.update();
+      });
+    }
+
+
+
+    function initLangSelector() {
+      var $body = $('body');
+      $('.lang-selector').on('click', function() {
+        $body.toggleClass('lang-en');
+      });
+    }
 
 
     // adaptde from http://stackoverflow.com/questions/4127118/can-you-detect-dragging-in-jquery
@@ -305,18 +392,43 @@
         left: (w / 2)
       });
       // $('#mobileadvanced').width(w);
+
+      //resize the wall image
+      $('.full-width')
+        .width($win.width())
+        .css({
+          left: - ($win.width() - w) / 2 + 50
+        });
     }
 
+    function getDaysUntilTheWedding() {
+      var now = new Date(),
+          theDate = new Date('Wed Aug 16 2014 16:00:00 GMT+0300 (EEST)'),
+          timeDiff =  Math.abs(theDate.getTime() - now.getTime()),
+          diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-    $.each(api.scenes, function() {
-      $('<li class="bullet heart cursor-pointer"></li>').appendTo('#bullets');
-    });
+      return diffDays;
+    }
+
+    function updateDayCountdown() {
+      $('.days-left').text(getDaysUntilTheWedding());
+    }
+
+    function initBullets() {
+      $.each(api.scenes, function() {
+        $('<li class="bullet heart cursor-pointer"></li>').appendTo('#bullets');
+      });
+    }
 
     $(window).on('resize', onResize);
     onResize();
+    initScroll();
+    initBullets();
     enableDragCursor();
-
+    initLangSelector();
     api.initBubbles();
+    otherLayoutStuff();
+    updateDayCountdown();
 
   });
 

@@ -13,9 +13,15 @@ html.rem-root {
   opacity: 1;
 }
 
+html .scene.fixed .scene-element,
+html .scene.fixed .scrolling-element {
+  opacity: 1
+}
+
 .scene.active .scene-element,
 .scene.active .scrolling-element {
   opacity: 1;
+  transition: none;
 }
 
 .scene.active .scene-title,
@@ -89,16 +95,20 @@ html.rem-root {
   width: 400px;
   height: 400px;
   position: relative;
+  top: 100px;
+  left: -50px;
 }
 .dana-si-gion .scene-element-content img {
-  width: 100%;
+  position: relative;
+  top: 90px;
+  width: 220px;
   height: auto;
 }
 
 .dana-si-gion .scene-element-content .bubble-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -82px;
+  left: -45px;
   width: 175px;
   height: 200px;
   transform: scale(0);
@@ -165,7 +175,8 @@ html.rem-root {
 }
 
 .scene-description {
-  transition: all 500ms 0s linear;
+  /*transition: all 500ms 0s linear;*/
+  transition: none;
   width: 40%;
   position: relative;
   top: -400px;
@@ -182,4 +193,20 @@ html.rem-root {
 
 .scene-description  * {
   font-size: 1rem;
+}
+
+
+/* language */
+.ro {
+  display: inline;
+}
+.en {
+  display: none;
+}
+
+.lang-en .ro {
+  display: none;
+}
+.lang-en .en {
+  display: inline;
 }

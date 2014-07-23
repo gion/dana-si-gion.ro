@@ -3,12 +3,14 @@
 
 }
 #botosani .scene-element-content {
-  border: 1px solid red;
-  /*transform: translateX(-50%) translateY(-50%);*/
+  position: relative;
 }
 #botosani .scene-element-content img {
   width: 300px;
   height: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 
@@ -96,3 +98,189 @@
   top: -600px;
 }
 
+/* 8th scene */
+#xmas {
+
+}
+
+/* 7th scene */
+#biciclete {
+
+}
+#biciclete .scene-element-wrapper {
+  top: 400px;
+}
+
+
+#biciclete .scene-element-wrapper {
+  height: 800px;
+}
+
+/* 9th scene */
+#the-wall {
+  position: relative;
+
+}
+#the-wall .scene-description {
+  top: 1000px;
+}
+
+#the-wall .scene-element-wrapper {
+  height: 2000px;
+}
+
+#the-wall img.the-wall {
+  width: 100%;
+  position: absolute;
+  /*margin-top: -300px;*/
+  z-index: 0;
+}
+
+
+/* 10th scene */
+#the-proposal {
+}
+#the-proposal .scene-description {
+  position: relative;
+  top: 100px;
+}
+#the-proposal .scene-description.she-said-yes {
+  margin-top: 0;
+  top: -600px;
+}
+
+/*#the-proposal .hand-animation {*/
+#the-proposal .scrolling-element {
+  margin: 0 auto;
+  position: relative;
+  width: 500px;
+  left: 100px;
+  height: 400px;
+  padding-top: 100px;
+  height: 1300px;
+  top: 500px;
+}
+
+#the-proposal .hand {
+  background: url(../images/hand.png) no-repeat;
+  height: 450px;
+  width: 358px;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  margin-left: -179px;
+  opacity: 0;
+  transition: opacity 300ms 0s linear;
+}
+#the-proposal .hand.active {
+  opacity: 1;
+}
+
+#the-proposal .ring {
+  background: url(../images/ring.png) no-repeat;
+  width: 57px;
+  height: 61px;
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  margin-left: 25px;
+  margin-top: 150px;
+}
+
+#the-proposal .ring .ring-shine {
+  opacity: 0;
+  transform: scale(0);
+  position: relative;
+  top: 2px;
+  left: 0px;
+}
+
+#the-proposal .ring.active .ring-shine {
+  transition: all 500ms 0s cubic-bezier(0, 0, .58, 1);
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* 11th scene */
+#never {
+  height: 1000px;
+}
+#never .scene-description {
+  top: -400px;
+}
+
+#never .scene-description.never-surprise {
+  top: 200px;
+}
+
+
+#never .paws {
+  position: fixed;
+  right: -450px;
+  width: 1200px;
+  top: -100px;
+  /*opacity: 0;*/
+  transform: rotate(35deg);
+  transform-origin: 0 0%;
+}
+#never .paws .paw {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../images/paw.png);
+  width: 75px;
+  height: 75px;
+  display: block;
+  float:left;
+  margin-bottom: 20px;
+  margin-left: 60px;
+  margin-right: 40px;
+  transform: rotate(90deg);
+  opacity: 0;
+}
+#never .paws .paw.paw-b {
+  margin-right: 100px;
+  margin-left: 0px;
+}
+
+#never .paws.step-1 .paw-1,
+#never .paws.step-2 .paw-2,
+#never .paws.step-3 .paw-3,
+#never .paws.step-4 .paw-4,
+#never .paws.step-5 .paw-5,
+#never .paws.step-6 .paw-6,
+#never .paws.step-7 .paw-7,
+#never .paws.step-8 .paw-8,
+#never .paws.step-9 .paw-9,
+#never .paws.step-10 .paw-10,
+#never .paws.step-11 .paw-11,
+#never .paws.step-12 .paw-12 {
+  opacity: 1;
+}
+
+
+
+/* 12th scene */
+#civila {
+  position: relative;
+}
+#civila .scene-description {
+  top: -400px;
+}
+
+#civila .scene-element-wrapper {
+  height: 1300px;
+}
+
+#civila img.bikes {
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+
+/* 13th scene */
+#nunta {
+  position: relative;
+  height: 1000px;
+}
