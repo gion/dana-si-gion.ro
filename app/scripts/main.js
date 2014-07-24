@@ -11,7 +11,7 @@
     });
 
     api.animateScroll = function (top, speed) {
-      api.myScroll.scrollTo(0, -top, 2000, IScroll.utils.ease.circular);
+      api.myScroll.scrollTo(0, -top, speed || 3000);
     };
 
 
@@ -194,20 +194,24 @@
       var s =  new ScrollScene({triggerElement: sceneEl, duration: $('.scrollContent').height(), offset: -200});
 
       $('.scene-element-wrapper', sceneEl).each(function(i, el) {
-        var sceneElement = $('.scene-element', el).get(0);
+        var sceneElement = $('.scene-element', el).get(0),
+            timeline = new TimelineMax();
+
+        timeline.insert(TweenMax.fromTo(sceneElement, 1,
+          {rotation: '0deg'},
+          {rotation: '100deg'}
+        ), 0);
+
+        timeline.insert(TweenMax.fromTo('.dana-si-gion .roata', 1,
+          {rotation: '0deg'},
+          {rotation: 20 * 360 + 'deg'}
+        ), 0);
 
         s
           .setPin(el, {pushFollowers: false})
-          .setTween(
-            TweenMax.fromTo(sceneElement, 1,
-              // {rotation: '-40deg'},
-              // {rotation: '110deg'}
-              {rotation: '0deg'},
-              {rotation: '100deg'}
-            )
-          );
+          .setTween(timeline);
 
-        s.tween = tween;
+        s.tween = timeline;
       });
 
       s.on('enter', function (event) {

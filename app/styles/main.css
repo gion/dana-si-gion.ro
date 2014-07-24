@@ -98,11 +98,30 @@ html .scene.fixed .scrolling-element {
   top: 100px;
   left: -50px;
 }
-.dana-si-gion .scene-element-content img {
+.dana-si-gion .scene-element-content .dana-si-gion-pe-bicicleta {
   position: relative;
   top: 90px;
   width: 220px;
   height: auto;
+}
+.dana-si-gion .scene-element-content .dana-si-gion-pe-bicicleta .bicicleta-fara-roti {
+  width: 100%;
+  height: 100%;
+}
+
+.dana-si-gion .scene-element-content .dana-si-gion-pe-bicicleta .roata {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+}
+
+.dana-si-gion .scene-element-content .dana-si-gion-pe-bicicleta .roata.roata-spate {
+  left: 5px;
+  bottom: 4px;
+}
+.dana-si-gion .scene-element-content .dana-si-gion-pe-bicicleta .roata.roata-fata {
+  right: 13px;
+  bottom: 3px;
 }
 
 .dana-si-gion .scene-element-content .bubble-wrapper {
