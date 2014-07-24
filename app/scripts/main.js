@@ -149,7 +149,8 @@
       },
 
       init: function() {
-        $('#music').on('click', 'a', api.sound.clickHandler);
+        $('#music').on('click', 'a', api.sound.clickHandler)
+          .find('a').tipsy({gravity: 'e', fade: true});
         api.sound.updatePlayerState('on');
       }
     };
@@ -293,6 +294,10 @@
     //extra tweens
 
     // good morning tween
+    var loveTween = TweenMax.fromTo('#love .scrolling-element', 1, {top: '2000px'}, {top: '-2000px'});
+    api.scenes[3].tween.add(loveTween);
+
+    // good morning tween
     var goodMorningTween = TweenMax.fromTo('.good-morning-1', 1, {top: '-600px'}, {top: 0});
     api.scenes[5].tween.add(goodMorningTween);
 
@@ -387,6 +392,8 @@
       api.myScroll = new IScroll('#example-wrapper', {
         mouseWheel: true,
         mouseWheelSpeed: 10,
+        keyBindings: true,
+        momentum: true,
         scrollX: false,
         scrollY: true,
         scrollbars: true,
@@ -406,6 +413,10 @@
       api.myScroll.on('scroll', function () {
         api.controller.update();
       });
+
+      $('*').on('keydown', function() {
+        api.controller.update();
+      });
     }
 
 
@@ -415,6 +426,7 @@
       $('.lang-selector').on('click', function() {
         $body.toggleClass('lang-en');
       });
+      $('.lang-selector').tipsy({gravity: 'e', fade: true});
     }
 
 
@@ -494,8 +506,23 @@
     }
 
     function initBullets() {
-      $.each(api.scenes, function() {
-        $('<li class="bullet heart cursor-pointer"></li>').appendTo('#bullets');
+      var $body = $('body'),
+          getLang = function() {
+            return $body.hasClass('lang-en') ? 'en' : 'ro';
+          };
+
+      $.each(api.scenes, function(i, sc) {
+        var scene = $(sc.triggerElement());
+
+        $('<li class="bullet heart cursor-pointer"></li>')
+          .appendTo('#bullets')
+          .tipsy({
+            gravity: 'e',
+            fade: true,
+            title: function() {
+              return scene.attr('data-title-' + getLang());
+            }
+          });
       });
     }
 

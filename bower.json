@@ -6,7 +6,8 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.11.0",
     "ScrollMagic": "~1.0.8",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "tipsy": "~0.1.7"
   },
   "devDependencies": {}
 }

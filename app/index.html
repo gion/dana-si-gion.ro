@@ -11,6 +11,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
+    <link rel="stylesheet" href="../bower_components/tipsy/src/stylesheets/tipsy.css" />
     <link rel="stylesheet" href="../bower_components/ScrollMagic/css/style.css" />
     <link rel="stylesheet" href="../bower_components/ScrollMagic/css/examples.css" />
     <!-- endbuild -->
@@ -49,10 +50,8 @@
       </a>
       <span id="player"></span>
     </div>
-    <a href="#" class="lang-selector prevent-default">
-      <span class="en">RO</span>
-      <span class="ro">EN</span>
-    </a>
+    <a href="#" class="lang-selector prevent-default ro" title="Change language to English">EN</a>
+    <a href="#" class="lang-selector prevent-default en" title="Schimba in limba romana">RO</a>
     <ul id="bullets"></ul>
   </div>
   <div class="clouds"></div>
@@ -98,7 +97,7 @@
           </div>
         </section>
 
-        <section class="scene main-scene" id="botosani">
+        <section class="scene main-scene" id="botosani" data-title-ro="Inceputul" data-title-en="The beginning">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -124,7 +123,7 @@
         </section>
 
 
-        <section class="scene main-scene" id="iasi">
+        <section class="scene main-scene" id="iasi" data-title-ro="Jazz" data-title-en="Getting closer">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -150,7 +149,7 @@
         </section>
 
 
-        <section class="scene main-scene" id="sighisoara">
+        <section class="scene main-scene" id="sighisoara" data-title-ro="Sighisoara" data-title-en="Sighisoara">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               La sighisoara..
@@ -171,7 +170,7 @@
         </section>
 
 
-        <section class="scene main-scene" id="love">
+        <section class="scene main-scene" id="love" data-title-ro="Love was in the air" data-title-en="Love was in the air">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -196,7 +195,7 @@
           </div>
         </section>
 
-        <section class="scene main-scene" id="mutat">
+        <section class="scene main-scene" id="mutat" data-title-ro="Mutatul impreuna" data-title-en="Moving in togheter">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -220,7 +219,7 @@
           </div>
         </section>
 
-        <section class="scene main-scene" id="home-sweet-home">
+        <section class="scene main-scene" id="home-sweet-home" data-title-ro="Casa dulce casa" data-title-en="Home sweet home">
           <div class="text-center scrolling-element good-morning-wrapper">
             <img src="images/good-morning-1.png"  alt="" class="good-morning good-morning-1">
             <img src="images/good-morning-2.png"  alt="" class="good-morning good-morning-2">
@@ -246,25 +245,14 @@
             </div>
             <div class="clearfix"></div>
           </div>
-          <div class="scene-element-wrapper">
-            <div class="scene-description">
-              <span class="ro" lang="ro">
-                ...diminetile si serile impreuna
-              </span>
-            </div>
-            <div class="scene-element">
-              <div class="scene-element-content-wrapper">
-                <div class="scene-element-content">
-                  <img src="images/xmas-tree.png"  alt="" class="xmas-tree" style="opacity: 0;">
-                </div>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <div class="clearfix"></div>
+          <div class="scene-description">
+            <span class="ro" lang="ro">
+              ...diminetile si serile impreuna
+            </span>
           </div>
         </section>
 
-        <section class="scene main-scene" id="xmas">
+        <section class="scene main-scene" id="xmas" data-title-ro="Craciunul" data-title-en="Xmas">
          <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -289,7 +277,7 @@
         </section>
 
 
-        <section class="scene main-scene" id="biciclete">
+        <section class="scene main-scene" id="biciclete" data-title-ro="Biciclete!!!" data-title-en="Bikes bikes bikes">
          <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -320,7 +308,7 @@
         </section>
 
 
-        <section class="scene main-scene" id="the-wall">
+        <section class="scene main-scene" id="the-wall" data-title-ro="The Wall" data-title-en="The Wall">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -350,7 +338,7 @@
           <img src="images/the-wall.jpg"  alt="" class="the-wall scrolling-element full-width">
         </section>
 
-        <section class="scene main-scene" id="the-proposal">
+        <section class="scene main-scene" id="the-proposal" data-title-ro="Cererea in casatorie" data-title-en="The Proposal">
           <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -394,7 +382,7 @@
           </div>
         </section>
 
-        <section class="scene main-scene" id="never">
+        <section class="scene main-scene" id="never" data-title-ro="Neverichi" data-title-en="Never">
           <div class="scrolling-element paws">
             <div class="paw paw-a paw-2"></div>
             <div class="paw paw-a paw-4"></div>
@@ -451,7 +439,7 @@
               </span>
             </div>
         </section>
-        <section class="scene main-scene" id="civila">
+        <section class="scene main-scene" id="civila"  data-title-ro="Starea Civila" data-title-en="Civil Ceremony">
          <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -482,7 +470,7 @@
           <img src="images/bikes.png" alt="" class="bikes scrolling-element full-width">
         </section>
 
-        <section class="scene main-scene" id="nunta">
+        <section class="scene main-scene" id="nunta"  data-title-ro="Nunta" data-title-en="The Wedding">
          <div class="scene-element-wrapper">
             <p class="scene-title">
               <span class="ro" lang="ro">
@@ -522,11 +510,11 @@
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/gsap/src/uncompressed/TweenMax.js"></script>
     <script src="../bower_components/ScrollMagic/js/jquery.scrollmagic.js"></script>
     <script src="../bower_components/lodash/dist/lodash.compat.js"></script>
     <!-- endbower -->
+    <script src="../bower_components/tipsy/src/javascripts/jquery.tipsy.js"></script>
     <script src="scripts/vendor/iscroll.js"></script>
     <!-- endbuild -->
 

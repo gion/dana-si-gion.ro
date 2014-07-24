@@ -45,12 +45,13 @@
   position: relative;
   height: 700px;
 }
+#love .scene-description {
+  top: 0;
+}
 #love .hearts {
   position: absolute;
-  top: -500px;
   right: 0;
   opacity: 0;
-  transition: opacity 1s 300ms ease-in-out;
   z-index: 0;
 }
 .scene-love #love .hearts {
@@ -64,6 +65,9 @@
 #mutat {
   position: relative;
   height: 800px;
+}
+#mutat .scene-description {
+  top: -100px;
 }
 
 #mutat .scene-element .scrolling-element {
