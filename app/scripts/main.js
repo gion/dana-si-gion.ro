@@ -80,6 +80,81 @@
     };
 
 
+    api.sound = {
+      playing: false,
+      loaded: false,
+      player: null,
+
+      updatePlayerState: function(state) {
+        $('#music a').each(function(i, el) {
+          var $el = $(el),
+              classes = $el.attr('class')
+                .split(/\s+/g)
+                .filter(function(c) {
+                  return c.indexOf('music-') === -1;
+                });
+
+          classes.push('music-' + state);
+          $el.attr('class', classes.join(' '));
+          $el.attr('title', $el.data(state));
+        });
+      },
+
+      onPlayerReady: function(e) {
+        e.target.playVideo();
+      },
+
+      onPlayerStateChange: function(e) {
+        if(e.data === window.YT.PlayerState.ENDED) {
+          api.sound.playing = false;
+          api.sound.updatePlayerState('on');
+        } else if(e.data === window.YT.PlayerState.PAUSED) {
+          api.sound.playing = false;
+          api.sound.updatePlayerState('on');
+        } else if(e.data === window.YT.PlayerState.PLAYING) {
+          api.sound.playing = true;
+          api.sound.updatePlayerState('off');
+        }
+      },
+
+      loadVideo: function() {
+        api.sound.loaded = true;
+        api.sound.updatePlayerState('loading');
+        $.getScript('https://www.youtube.com/iframe_api');
+        window.onYouTubeIframeAPIReady = function() {
+          api.sound.player = new window.YT.Player('player', {
+            height: '0',
+            width: '0',
+            videoId: '8_2xTSfEVMM',
+            events: {
+              onReady: api.sound.onPlayerReady,
+              onStateChange: api.sound.onPlayerStateChange
+            }
+          });
+        };
+      },
+
+      clickHandler: function() {
+        if(api.sound.playing) {
+          api.sound.player.pauseVideo();
+        } else {
+          if(api.sound.loaded) {
+            api.sound.player.playVideo();
+          } else {
+            api.sound.loadVideo();
+          }
+        }
+
+        api.sound.playing = !api.sound.playing;
+      },
+
+      init: function() {
+        $('#music').on('click', 'a', api.sound.clickHandler);
+        api.sound.updatePlayerState('on');
+      }
+    };
+
+
     var scenes =  api.scenes = [];
 
 
@@ -429,7 +504,7 @@
     api.initBubbles();
     otherLayoutStuff();
     updateDayCountdown();
-
+    api.sound.init();
   });
 
 }) (this, this.api = (this.api || {}), this.jQuery, this._, this.TweenMax, this.TimelineMax, this.ScrollMagic, this.ScrollScene, this.Modernizr, this.IScroll);
