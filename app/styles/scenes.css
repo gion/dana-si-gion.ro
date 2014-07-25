@@ -79,33 +79,37 @@
 /* 6th scene */
 #home-sweet-home {
   position: relative;
-  height: 800px;
-  overflow: hidden;
+  min-height: 800px;
+  height: 1500px;
+  /*overflow: hidden;*/
 }
 
+#home-sweet-home .scene-description:first-child {
+  margin-top: 0;
+}
+#home-sweet-home .scene-description {
+  margin-top: 200px;
+  top: -100px;
+}
 #home-sweet-home .scrolling-element {
   transition-delay: 1s;
 }
 
 .good-morning-wrapper {
-  position: relative;
+  position: fixed;
+  left: 50%;
   min-height: 400px;
-  top: 600px;
+  top: 10%;
 }
 .good-morning {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateY(-100%);
 }
 .good-morning-1 {
   top: -600px;
 }
 
-/* 8th scene */
-#xmas {
-
-}
 
 /* 7th scene */
 #biciclete {
@@ -113,11 +117,10 @@
 }
 #biciclete .scene-element-wrapper {
   top: 400px;
-}
-
-
-#biciclete .scene-element-wrapper {
   height: 800px;
+}
+#biciclete .scene-description {
+  top: -100px;
 }
 
 /* 9th scene */
@@ -126,11 +129,12 @@
 
 }
 #the-wall .scene-description {
-  top: 1000px;
+  top: 0px;
 }
 
 #the-wall .scene-element-wrapper {
   height: 2000px;
+  position: relative;
 }
 
 #the-wall img.the-wall {
@@ -138,6 +142,8 @@
   position: absolute;
   /*margin-top: -300px;*/
   z-index: 0;
+  /*top: 1000px;*/
+  top: 500px;
 }
 
 
@@ -269,11 +275,12 @@
   position: relative;
 }
 #civila .scene-description {
-  top: -400px;
+  top: 0px;
 }
 
 #civila .scene-element-wrapper {
   height: 1300px;
+  position: relative;
 }
 
 #civila img.bikes {
@@ -287,4 +294,7 @@
 #nunta {
   position: relative;
   height: 1000px;
+}
+#nunta .scene-description {
+  top: -100px;
 }

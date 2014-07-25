@@ -1,4 +1,10 @@
-@media (max-width: 1500px) { 
+@media (max-width: 1700px) {
+    .scene-title {
+      left: 10px;
+    }
+}
+
+@media (max-width: 1550px) {
     .scene-title {
       top: 10px;
       left: 600px;

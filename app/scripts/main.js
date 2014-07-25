@@ -298,13 +298,17 @@
     api.scenes[3].tween.add(loveTween);
 
     // good morning tween
-    var goodMorningTween = TweenMax.fromTo('.good-morning-1', 1, {top: '-600px'}, {top: 0});
-    api.scenes[5].tween.add(goodMorningTween);
+    var goodMorningTween1 = TweenMax.fromTo('.good-morning-1', 1, {top: '-600px'}, {top: 0});
+    var goodMorningTween2 = TweenMax.fromTo('.good-morning-2', 1, {top: '600px'}, {top: 0});
+    // api.scenes[5].tween.add(goodMorningTween);
+    api.scenes[5].tween.insert(goodMorningTween1, 0);
+    api.scenes[5].tween.insert(goodMorningTween2, 0);
 
 
     // the wall tween
-    var theWallTween = TweenMax.to('#the-wall img.the-wall', 1, { top: '-1000px'});
-    api.scenes[8].tween.add(theWallTween);
+    var theWallTween = TweenMax.fromTo('#the-wall img.the-wall', 1, { top: '500px'},{ top: '-2500px'});
+    // api.scenes[7].tween.add(theWallTween);
+    api.scenes[7].tween.insert(theWallTween, 0);
 
 
     // the ring tween
@@ -335,7 +339,7 @@
       }
     });
 
-    api.scenes[9].tween.add(ringTween);
+    api.scenes[8].tween.add(ringTween);
 
 
 
@@ -362,14 +366,14 @@
       }
     });
 
-    api.scenes[10].tween.add(pawsTween);
+    api.scenes[9].tween.add(pawsTween);
 
 
 
     // bikes tween
     // simillar to the theWallTween
-    var bikesTween = TweenMax.fromTo('#civila img.bikes', 1, {top: '1000px'}, {top: '-1500px'});
-    api.scenes[11].tween.add(bikesTween);
+    var bikesTween = TweenMax.fromTo('#civila img.bikes', 1, {top: '500px'}, {top: '-3000px'});
+    api.scenes[10].tween.insert(bikesTween, 0);
 
 
 
