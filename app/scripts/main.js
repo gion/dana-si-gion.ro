@@ -251,13 +251,32 @@
        // for scene element (wrapper)
       $('.scene-element-wrapper', sceneEl).each(function(j, el) {
         // get the element
-        var sceneElement = $('.scene-element', el).get(0),
-            descriptionElement = $('.scene-description', el);
+        var $sceneElement = $('.scene-element', el),
+            sceneElement = $sceneElement.get(0),
+            fade = $sceneElement.hasClass('fade'),
+            descriptionElement = $('.scene-description', el),
+            from = {rotation: '110deg'},
+            to = {rotation: '-90deg'},
+            faded = false;
 
-        var tween = TweenMax.fromTo(sceneElement, 1,
-            {rotation: '110deg'},
-            {rotation: '-90deg'}
-          );
+        if(fade) {
+          to.onUpdate = function() {
+            var p = this.progress();
+            if(faded) {
+              if(p > 0.01 && p < 0.7) {
+                $sceneElement.removeClass('faded');
+                faded = false;
+              }
+            } else {
+              if(p < 0.01 || p > 0.7) {
+                $sceneElement.addClass('faded');
+                faded = true;
+              }
+            }
+          };
+        }
+
+        var tween = TweenMax.fromTo(sceneElement, 1, from, to);
 
         timeline.add(tween);
       });
@@ -329,17 +348,36 @@
             $('#the-proposal .ring').addClass('active');
             this._animatedRing = true;
           }
-        } else if(progress < 0.7 || progress > 0.95) {
+        } else if(progress < 0.7 || progress > 0.9) {
           $('#the-proposal .ring').removeClass('active');
           this._animatedRing = false;
         }
+
+        // if(this.faded) {
+        //   if(progress > 0.01 && progress < 0.8) {
+        //     $('#the-proposal .hand').removeClass('faded');
+        //     this.faded = false;
+        //   }
+        // } else {
+        //   if(progress < 0.01 || progress > 0.8) {
+        //     $('#the-proposal .hand').addClass('faded');
+        //     this.faded = true;
+        //   }
+        // }
       },
       onComplete: function() {
         $('#the-proposal .hand').removeClass('active');
       }
     });
 
+    // var handTween = TweenMax.fromTo('#the-proposal .hand', 1, {
+    //   top: '500px'
+    // },  {
+    //   top: '-500px'
+    // });
+
     api.scenes[8].tween.add(ringTween);
+    // api.scenes[8].tween.insert(handTween, 0);
 
 
 

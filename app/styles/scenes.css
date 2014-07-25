@@ -1,6 +1,6 @@
 /* 1st scene */
 #botosani {
-
+  height: 800px;
 }
 #botosani .scene-element-content {
   position: relative;
@@ -17,7 +17,7 @@
 /* 2nd scene */
 #iasi {
 	position: relative;
-	height: 500px;
+	height: 800px;
 }
 
 #iasi .jazz {
@@ -70,6 +70,10 @@
   top: -100px;
 }
 
+#mutat .scene-element img {
+  margin-top: 100px;
+}
+
 #mutat .scene-element .scrolling-element {
   position: relative;
   top: -30px;
@@ -93,6 +97,29 @@
 }
 #home-sweet-home .scrolling-element {
   transition-delay: 1s;
+}
+
+
+#home-sweet-home .scene-element-wrapper {
+  position: absolute;
+  top: 400px;
+  height: 800px;
+  z-index: 999;
+}
+#home-sweet-home .scene-element {
+  position: relative;
+  top: 50px;
+  left: 150px;
+}
+
+#home-sweet-home .scene-element-content {
+  z-index: 999;
+}
+
+#home-sweet-home .fun-sign {
+  z-index: 999;
+  width: 150px;
+  transform: rotate(15deg);
 }
 
 .good-morning-wrapper {

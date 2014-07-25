@@ -41,3 +41,8 @@
 .background-blue {
   background-color: #28ABE3;
 }
+
+.faded {
+  opacity: 0 !important;
+  transition: none !important;
+}
