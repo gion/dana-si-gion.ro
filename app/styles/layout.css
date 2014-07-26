@@ -12,7 +12,7 @@ body {
 #stats {
   position: fixed;
   right: -20px;
-  top: 100px;
+  top: 150px;
   padding-right: 50px;
   z-index: 1000;
   width: 125px;
@@ -21,11 +21,18 @@ body {
 #share {
   position: absolute;
   right: 0;
+  top: -90px;
 }
 
 #fb-share {
-
+  display: block;
 }
+#fb-share > span {
+  vertical-align: bottom;
+  height: 29px;
+  min-width: 110px;
+}
+
 #tw-share {
 
 }
