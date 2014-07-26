@@ -312,12 +312,6 @@
 
     //extra tweens
 
-    // whole page tweens
-    // api.loveBirdTween = TweenMax.fromTo('.lovebirds-wrapper', 3, {top: '30px'}, {top: '-30px', yoyo: true, repeat: -1, ease: window.Cubic.easeInOut});
-
-
-    // scene tweens
-
     // guitarist love
     var guitaristLoveTween1 = TweenMax.fromTo('#botosani .scrolling-element img', 1, {top: '100px'}, {top: '-200px'});
     var guitaristLoveTween2 = TweenMax.fromTo('#botosani .scrolling-element img', 1, {top: '-200px'}, {top: '100px'});

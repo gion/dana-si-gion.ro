@@ -12,3 +12,14 @@
       transform: translateY(-50%);
     }
 }
+
+@media (max-width: 1400px) {
+    body.scene-last section#titlechart #description {
+    	width: 300px;
+    	height: 200px;
+    	top: 25%;
+    }
+    body.scene-last section#titlechart #description .lovebirds-wrapper .text-wrapper { 
+    	bottom: 20px;
+    }
+}
