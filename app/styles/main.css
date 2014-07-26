@@ -179,9 +179,11 @@ html .scene.fixed .scrolling-element {
 
 .scene-title {
   transition: all 500ms 0s linear;
-  font-family: 'Lobster', cursive;
-  text-transform: uppercase;
-  font-size: 2rem;
+  /*font-family: 'Lobster', cursive;*/
+  font-family: 'Amatic SC', cursive;
+  font-weight: bolder;
+  /*text-transform: uppercase;*/
+  font-size: 3rem;
   opacity: 0;
   position: fixed;
   top: 100px;
@@ -254,7 +256,8 @@ html .scene.fixed .scrolling-element {
 .lovebirds-wrapper .text-wrapper,
 .lovebirds-wrapper .text-wrapper h1,
 .lovebirds-wrapper .text-wrapper h2 {
-  font-family: 'Lobster', cursive;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bolder;
 }
 
 @keyframes float {
