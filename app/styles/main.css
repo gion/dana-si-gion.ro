@@ -229,3 +229,39 @@ html .scene.fixed .scrolling-element {
 .lang-en .en {
   display: inline;
 }
+
+
+/*header*/
+.lovebirds-wrapper {
+  position: relative;
+  width: 590px;
+  height: 372px;
+  background: url(../images/lovebirds.png) no-repeat center center;
+  background-size: 100% 100%;
+  animation-name: float;
+  animation-duration: 3s;
+  animation-delay: 0s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+.lovebirds-wrapper .text-wrapper {
+  position: absolute;
+  width: 100%;
+  bottom: 60px;
+}
+.lovebirds-wrapper .text-wrapper,
+.lovebirds-wrapper .text-wrapper h1,
+.lovebirds-wrapper .text-wrapper h2 {
+  font-family: 'Lobster', cursive;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-40px);
+  }
+}
