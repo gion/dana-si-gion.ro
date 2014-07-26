@@ -312,6 +312,12 @@
 
     //extra tweens
 
+    // guitarist love
+    var guitaristLoveTween1 = TweenMax.fromTo('#botosani .scrolling-element img', 1, {top: '100px'}, {top: '-200px'});
+    var guitaristLoveTween2 = TweenMax.fromTo('#botosani .scrolling-element img', 1, {top: '-200px'}, {top: '100px'});
+    api.scenes[0].tween.add(guitaristLoveTween1);
+    api.scenes[0].tween.add(guitaristLoveTween2);
+
     // good morning tween
     var loveTween = TweenMax.fromTo('#love .scrolling-element', 1, {top: '2000px'}, {top: '-2000px'});
     api.scenes[3].tween.add(loveTween);

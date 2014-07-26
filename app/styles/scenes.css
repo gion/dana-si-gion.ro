@@ -4,6 +4,7 @@
 }
 #botosani .scene-element-content {
   position: relative;
+  height: 1000px;
 }
 #botosani .scene-element-content img {
   width: 300px;
@@ -11,6 +12,15 @@
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+#botosani .scrolling-element { 
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
+#botosani .scrolling-element img {
+  position: relative;
 }
 
 
